@@ -1,31 +1,32 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Stack;
 
-public class TopologicalSortDFS {
+public class TopBFSKahnAlgo {
 
     public static List<Integer> topSort(List<List<Integer>> adj) {
-        Stack<Integer> stack = new Stack<>();
         int N = adj.size();
-        boolean[] visited = new boolean[N];
-        for (int i = 0; i < N; i++) {
-            if (!visited[i]) dfs(i, adj, visited, stack);
-        }
-        List<Integer> ans = new ArrayList<>();
-        while (!stack.isEmpty()) {
-            ans.add(stack.pop());
-        }
-        return ans;
-    }
-
-    public static void dfs(int cur, List<List<Integer>> adj, boolean[] visited, Stack<Integer> stack) {
-        visited[cur] = true;
-        for (int neighbor : adj.get(cur)) {
-            if (!visited[neighbor]) {
-                dfs(neighbor, adj, visited, stack);
+        int[] inDegree = new int[N];
+        for (List<Integer> integers : adj) {
+            for (int neighbor : integers) {
+                inDegree[neighbor]++;
             }
         }
-        stack.push(cur);
+        Deque<Integer> queue = new ArrayDeque<>();
+        for (int i = 0; i < N; i++) {
+            if (inDegree[i] == 0) queue.offer(i);
+        }
+        List<Integer> ans = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            for (int neighbor : adj.get(cur)) {
+                inDegree[neighbor]--;
+                if (inDegree[neighbor] == 0) queue.offer(neighbor);
+            }
+            ans.add(cur);
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
