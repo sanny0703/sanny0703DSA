@@ -2,32 +2,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class TopologicalSortDFS {
+/***
+ * only applied on DAG
+ * No Cycle
+ * No Undirected
+ */
+public class TopSortDFS {
 
-    public static List<Integer> topSort(List<List<Integer>> adj) {
-        Stack<Integer> stack = new Stack<>();
+    public static List<Integer> topSort(List<List<Integer>>adj){
         int N = adj.size();
         boolean[] visited = new boolean[N];
-        for (int i = 0; i < N; i++) {
-            if (!visited[i]) dfs(i, adj, visited, stack);
+        Stack<Integer> stack = new Stack<>();
+        for(int i=0;i<N;i++){
+            if(!visited[i]) dfs(i,adj,visited,stack);
         }
         List<Integer> ans = new ArrayList<>();
-        while (!stack.isEmpty()) {
+        while(!stack.isEmpty()){
             ans.add(stack.pop());
         }
         return ans;
     }
-
-    public static void dfs(int cur, List<List<Integer>> adj, boolean[] visited, Stack<Integer> stack) {
+    public static  void dfs(int cur, List<List<Integer>>adj,boolean[] visited,Stack<Integer> stack){
         visited[cur] = true;
-        for (int neighbor : adj.get(cur)) {
-            if (!visited[neighbor]) {
-                dfs(neighbor, adj, visited, stack);
-            }
+        for(int neighbor:adj.get(cur)){
+            if(!visited[neighbor]) dfs(neighbor,adj,visited,stack);
         }
         stack.push(cur);
     }
-
     public static void main(String[] args) {
         List<List<Integer>> adj = new ArrayList<>();
         for (int i = 0; i < 6; i++) {

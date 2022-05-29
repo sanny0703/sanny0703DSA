@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class CycleDirectedDFS {
+public class DirectedDFS {
 
     public static boolean isCycle(List<List<Integer>> adj) {
         int N = adj.size();
@@ -21,7 +21,6 @@ public class CycleDirectedDFS {
         for (int neighbor : adj.get(cur)) {
             if (!visited[neighbor]) {
                 if (dfs(neighbor, adj, visited, dfsVisited)) return true;
-
             } else if (dfsVisited[neighbor]) return true;
         }
         dfsVisited[cur] = false;

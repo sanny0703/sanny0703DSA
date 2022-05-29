@@ -3,11 +3,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-/***
- * using the fact the topsort only works for directed acyclic graphs, if there is a cycle then topsort fails
- */
-public class CycleDirectedBFSKahnsAlgo {
-
+public class DirectedBFS {
     public static boolean isCycle(List<List<Integer>> adj) {
         int N = adj.size();
         int[] inDegree = new int[N];
@@ -20,7 +16,7 @@ public class CycleDirectedBFSKahnsAlgo {
         for (int i = 0; i < N; i++) {
             if (inDegree[i] == 0) queue.offer(i);
         }
-        int cnt = 0; // counter to check whether we processed all nodes are not, if no cycle then topsort works and all nodes will be processed
+        int cnt = 0;
         while (!queue.isEmpty()) {
             int cur = queue.poll();
             cnt++;
@@ -31,6 +27,7 @@ public class CycleDirectedBFSKahnsAlgo {
             if (cnt == N) return false;
         }
         return true;
+
     }
 
     public static void main(String[] args) {

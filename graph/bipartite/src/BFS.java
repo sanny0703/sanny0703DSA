@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-public class BipartiteBFS {
+public class BFS {
 
     public static boolean isBipartite(List<List<Integer>> adj) {
         int N = adj.size();
