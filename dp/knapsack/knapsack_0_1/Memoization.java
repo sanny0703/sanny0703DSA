@@ -7,6 +7,7 @@ public class Memoization {
 
     public static int knapsack(int[] weights, int[] values, int n, int W) {
         if (n == 0 || W == 0) return dp[n][W] = 0;
+        if (dp[n][W] != -1) return dp[n][W];
         else if (weights[n - 1] <= W)
             return dp[n][W] = Math.max(values[n - 1] + knapsack(weights, values, n - 1, W - weights[n - 1]), knapsack(weights, values, n - 1, W));
         else return knapsack(weights, values, n - 1, W);
