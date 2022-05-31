@@ -35,7 +35,5 @@ public class CountSubSetSumDiff {
         // 3
         System.out.println(count(nums, 4, diff));
 
-        int[] nums2 = {0,0,0,0,0,0,0,0,1};
-        System.out.println(count(nums2,9,diff));
     }
 }
