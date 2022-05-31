@@ -4,10 +4,10 @@ public class subSetSum {
 
     public static boolean isSum(int[] nums, int n, int target) {
         boolean[][] dp = new boolean[n + 1][target + 1];
-        for (int i = 0; i < n + 1; i++) {
+        dp[0][0] = true;
+        for (int i = 1; i < n + 1; i++) {
             for (int j = 0; j < target + 1; j++) {
-                if (i == 0) dp[i][j] = false;
-                else if (j == 0) dp[i][j] = true;
+                if (j == 0) dp[i][j] = true;
                 else if (nums[i - 1] <= j) dp[i][j] = dp[i - 1][j - nums[i - 1]] || dp[i - 1][j];
                 else dp[i][j] = dp[i - 1][j];
             }
