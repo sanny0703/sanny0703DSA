@@ -43,5 +43,8 @@ public class TargetSum {
         int[] nums = {1, 1, 1, 1, 1};
         int diff = 3;
         System.out.println(count(nums, 5, diff));
+
+        int[] nums2 = {0,0,0,0,0,0,0,1};
+        System.out.println(count(nums2,8,1));
     }
 }
