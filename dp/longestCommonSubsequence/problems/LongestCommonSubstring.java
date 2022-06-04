@@ -1,6 +1,6 @@
 package longestCommonSubsequence.problems;
 
-/***
+/**
  * Longest Common Substring(Dynamic Programming)<br>
  * Given two strings ‘X’ and ‘Y’, find the length of the longest common substring.<br>
  * <b>Examples:</b><br>

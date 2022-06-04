@@ -2,7 +2,7 @@ package knapsack.knapsack_0_1.problems;
 
 import java.util.Arrays;
 
-/***
+/**
  * <b>count the no of ways in which the arr can be split into two subsets such that the diff of their sum is equal to diff </b>
  * <br>
  * this problem reduces to <b>SubSetSumCount</b> <br>

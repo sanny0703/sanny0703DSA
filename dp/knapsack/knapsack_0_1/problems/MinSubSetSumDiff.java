@@ -3,11 +3,11 @@ package knapsack.knapsack_0_1.problems;
 import java.util.ArrayList;
 import java.util.List;
 
-/***
+/**
  * split the arr in to two subsets such that difference between their sums is minimum
  */
 public class MinSubSetSumDiff {
-    /***
+    /**
      *
      * the idea here is to make use of the last row of dp<code>(length:n and sum:j)</code>
      * because all are not valid sums, so take only valid sums in to consideration

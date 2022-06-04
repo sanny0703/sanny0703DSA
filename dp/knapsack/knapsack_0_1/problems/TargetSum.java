@@ -2,7 +2,7 @@ package knapsack.knapsack_0_1.problems;
 
 import java.util.Arrays;
 
-/***
+/**
  * <code>given an arr return no of ways + or - can be placed in front of each element such that sum is equal to given number<br>
  * eg: nums = [1,1,1,1,1], target = 3<br>
  * -1 + 1 + 1 + 1 + 1 = 3<br>
@@ -12,7 +12,7 @@ import java.util.Arrays;
  * +1 + 1 + 1 + 1 - 1 = 3<br>
  */
 public class TargetSum {
-    /***
+    /**
      * <code>
      *     -1 + 1 + 1 + 1 + 1 = 3<br>
      *     (1+1+1+1)-(1)<br>

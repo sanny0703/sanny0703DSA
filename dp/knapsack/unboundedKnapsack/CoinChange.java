@@ -1,6 +1,6 @@
 package knapsack.unboundedKnapsack;
 
-/***
+/**
  * Coin Change Problem Maximum Number of ways<br>
  * Given a value N, if we want to make change for N cents, and we have infinite supply of each of S = { S1, S2, .. , Sm} valued coins,<br>
  * how many ways can we make the change? The order of coins does not matter.<br>

@@ -1,6 +1,6 @@
 package knapsack.unboundedKnapsack;
 
-/***
+/**
  * <b> Given a rod of length n inches and an array of prices that contains prices of all pieces of size smaller than n.<br> Determine the  maximum value obtainable by cutting up the rod and selling the pieces.<br>
  * <h2>Example:</h2>
  * <i>if length of the rod is 8 and the values of different pieces are given as following<br><code>length   | 1   2   3   4   5   6   7   8 <br>

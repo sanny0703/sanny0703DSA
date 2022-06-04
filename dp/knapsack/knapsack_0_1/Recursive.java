@@ -1,7 +1,7 @@
 package knapsack.knapsack_0_1;
 
 public class Recursive {
-    /***
+    /**
      * As we can see recursion works here and also there are two calls for recursion, so we can check for
      * overlapping sub-problems and also optimal(max profit) is required, so we can go for dp
      *

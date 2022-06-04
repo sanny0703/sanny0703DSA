@@ -13,10 +13,10 @@ public class printLCS {
         }
         int i = n;
         int j = m;
-        String ans = "";
-        while (i > 0 && j > 0) {
+        StringBuilder ans = new StringBuilder();
+        while (i >= 1 && j >= 1) {
             if (x.charAt(i - 1) == y.charAt(j - 1)) {
-                ans = x.charAt(i - 1) + ans;
+                ans.append(x.charAt(i - 1));
                 i--;
                 j--;
             } else {
@@ -29,7 +29,7 @@ public class printLCS {
 
 
         }
-        return ans;
+        return ans.reverse().toString();
 
     }
 

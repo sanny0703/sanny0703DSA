@@ -1,6 +1,6 @@
 package longestCommonSubsequence;
 
-/***
+/**
  * Longest Common Subsequence Problem solution using recursion<br>
  * Given two sequences, find the length of longest subsequence present in both of them.<br>
  * A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.<br>
