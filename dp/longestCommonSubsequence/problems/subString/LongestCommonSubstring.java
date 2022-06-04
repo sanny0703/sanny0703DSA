@@ -1,4 +1,4 @@
-package longestCommonSubsequence.problems;
+package longestCommonSubsequence.problems.subString;
 
 /**
  * Longest Common Substring(Dynamic Programming)<br>

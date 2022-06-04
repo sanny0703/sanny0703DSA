@@ -1,4 +1,4 @@
-package longestCommonSubsequence.problems;
+package longestCommonSubsequence.problems.subString;
 
 /**
  * print the longest common substring of two strings
