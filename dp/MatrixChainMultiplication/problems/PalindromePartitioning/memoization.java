@@ -34,7 +34,7 @@ public class memoization {
 
     public static void main(String[] args) {
         long a = System.nanoTime();
-        // 3{"n|it|im"}
+        // 2{"n|it|im"}
         System.out.println(minPartitions("nitim"));
         // 3{“aba|b|bbabb|ababa” }
         System.out.println(minPartitions("ababbbabbababa"));
