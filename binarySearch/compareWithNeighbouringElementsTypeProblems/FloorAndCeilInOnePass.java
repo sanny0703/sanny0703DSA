@@ -32,5 +32,6 @@ public class FloorAndCeilInOnePass {
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(floorAndCeil(new int[]{1, 2, 3, 4, 8, 10, 12, 19}, 11)));
+        System.out.println(Integer.MIN_VALUE);
     }
 }
