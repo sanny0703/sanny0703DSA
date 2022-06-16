@@ -1,27 +1,30 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class UndirectedDFS {
-
-    public static boolean isCycle(List<List<Integer>> adj) {
+/**
+ * Depth first Traversal of a graph
+ * Goes all the way to depth of a node before going to the other node
+ * here children are visited before siblings
+ */
+public class Dfs {
+    public static List<Integer> traverse(List<List<Integer>> adj) {
         int N = adj.size();
         boolean[] visited = new boolean[N];
+        List<Integer> ans = new ArrayList<>();
         for (int i = 0; i < N; i++) {
-            if (!visited[i]) {
-                if (dfs(i, -1, adj, visited)) return true;
-            }
+            if (!visited[i])
+                dfs(i, adj, visited, ans);
         }
-        return false;
+        return ans;
     }
 
-    public static boolean dfs(int cur, int prev, List<List<Integer>> adj, boolean[] visited) {
+    public static void dfs(int cur, List<List<Integer>> adj, boolean[] visited, List<Integer> ans) {
         visited[cur] = true;
         for (int neighbor : adj.get(cur)) {
-            if (!visited[neighbor]) {
-                if (dfs(neighbor, cur, adj, visited)) return true;
-            } else if (prev != neighbor) return true;
+            if (!visited[neighbor])
+                dfs(neighbor, adj, visited, ans);
         }
-        return false;
+        ans.add(cur);
     }
 
     public static void addEdge(int u, int v, List<List<Integer>> adj) {
@@ -43,7 +46,6 @@ public class UndirectedDFS {
         addEdge(7, 8, adj);
         addEdge(7, 6, adj);
 
-        System.out.println(isCycle(adj));
-
+        System.out.println(traverse(adj));
     }
 }

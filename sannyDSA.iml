@@ -8,8 +8,18 @@
       <sourceFolder url="file://$MODULE_DIR$/dp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/dailyCodingProblems" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/binarySearch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/graphs" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

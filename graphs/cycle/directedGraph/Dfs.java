@@ -1,8 +1,13 @@
+package cycle.directedGraph;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirectedDFS {
-
+/**
+ * here we keep track current call of Dfs ,if we visit the node that is already visited in the same dfs call
+ * then there is a cycle
+ */
+public class Dfs {
     public static boolean isCycle(List<List<Integer>> adj) {
         int N = adj.size();
         boolean[] visited = new boolean[N];
@@ -21,9 +26,9 @@ public class DirectedDFS {
         for (int neighbor : adj.get(cur)) {
             if (!visited[neighbor]) {
                 if (dfs(neighbor, adj, visited, dfsVisited)) return true;
-            } else if (dfsVisited[neighbor]) return true;
+                else if (dfsVisited[neighbor]) return true;
+            }
         }
-        dfsVisited[cur] = false;
         return false;
     }
 

@@ -1,18 +1,25 @@
+package cycle.directedGraph;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
-public class DirectedBFS {
+/**
+ * find if there is a cycle in Directed Graph
+ * <p>
+ * The idea here is to use topSort, as we know topSort order only exists for DAG, i.e. if we cannot generate a TopSort
+ * Order of vertices that means there is a cycle
+ */
+public class BfsTopSort {
     public static boolean isCycle(List<List<Integer>> adj) {
         int N = adj.size();
         int[] inDegree = new int[N];
-        for (List<Integer> node : adj) {
-            for (int neighbor : node) {
+        for (List<Integer> neighbors : adj) {
+            for (int neighbor : neighbors)
                 inDegree[neighbor]++;
-            }
         }
-        Deque<Integer> queue = new ArrayDeque<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         for (int i = 0; i < N; i++) {
             if (inDegree[i] == 0) queue.offer(i);
         }
@@ -22,12 +29,11 @@ public class DirectedBFS {
             cnt++;
             for (int neighbor : adj.get(cur)) {
                 inDegree[neighbor]--;
-                if (inDegree[neighbor] == 0) queue.offer(neighbor);
+                if (inDegree[neighbor] == 0)
+                    queue.offer(neighbor);
             }
-            if (cnt == N) return false;
         }
-        return true;
-
+        return cnt != N;
     }
 
     public static void main(String[] args) {

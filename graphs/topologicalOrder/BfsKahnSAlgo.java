@@ -1,31 +1,36 @@
+package topologicalOrder;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
-public class TopSortBFSKahnSAlgo {
-
-    public static List<Integer> topSort(List<List<Integer>> adj) {
+/**
+ * topological ordering using bfs(Kahn's algo)
+ */
+public class BfsKahnSAlgo {
+    public static List<Integer> topOrder(List<List<Integer>> adj) {
         int N = adj.size();
         int[] inDegree = new int[N];
-        List<Integer> ans = new ArrayList<>();
-        for (List<Integer> node : adj) {
-            for (int neighbor : node) {
+        for (List<Integer> neighbors : adj) {
+            for (int neighbor : neighbors) {
                 inDegree[neighbor]++;
             }
         }
-        Deque<Integer> queue = new ArrayDeque<>();
+        Queue<Integer> queue = new ArrayDeque<>();
         for (int i = 0; i < N; i++) {
-            if (inDegree[i] == 0) queue.offer(i);
+            if (inDegree[i] == 0)
+                queue.offer(i);
         }
+        List<Integer> ans = new ArrayList<>();
         while (!queue.isEmpty()) {
             int cur = queue.poll();
             ans.add(cur);
             for (int neighbor : adj.get(cur)) {
                 inDegree[neighbor]--;
-                if (inDegree[neighbor] == 0) queue.offer(neighbor);
+                if (inDegree[neighbor] == 0)
+                    queue.offer(neighbor);
             }
-
         }
         return ans;
     }
@@ -41,6 +46,6 @@ public class TopSortBFSKahnSAlgo {
         adj.get(4).add(1);
         adj.get(5).add(0);
         adj.get(5).add(2);
-        System.out.println(topSort(adj));
+        System.out.println(topOrder(adj));
     }
 }

@@ -1,24 +1,27 @@
+package cycle.undirectedGraph;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
+import java.util.Queue;
 
-public class UndirectedBFS {
-
+/**
+ * the idea is same as dfs , but wee use bfs for traversal
+ */
+public class Bfs {
     public static boolean isCycle(List<List<Integer>> adj) {
         int N = adj.size();
         boolean[] visited = new boolean[N];
         for (int i = 0; i < N; i++) {
             if (!visited[i]) {
-                if (bfs(i, -1, adj, visited)) return true;
+                if (bfs(i, adj, visited, -1)) return true;
             }
         }
         return false;
-
     }
 
-    public static boolean bfs(int cur, int prev, List<List<Integer>> adj, boolean[] visited) {
-        Deque<Node> queue = new ArrayDeque<>();
+    public static boolean bfs(int cur, List<List<Integer>> adj, boolean[] visited, int prev) {
+        Queue<Node> queue = new ArrayDeque<>();
         queue.offer(new Node(cur, prev));
         visited[cur] = true;
         while (!queue.isEmpty()) {
@@ -27,7 +30,9 @@ public class UndirectedBFS {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
                     queue.offer(new Node(neighbor, curNode.cur));
-                } else if (neighbor != curNode.prev) return true;
+                } else if (curNode.prev != neighbor) {
+                    return true;
+                }
             }
         }
         return false;
