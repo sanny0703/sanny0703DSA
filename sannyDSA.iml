@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/binarySearch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/graphs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/slidingWindow" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Grind75" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
