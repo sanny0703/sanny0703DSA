@@ -1,4 +1,4 @@
-package DynamicProgramming.CombinationSum;
+package BacktrackingAndRecursion.combinationSum;
 
 import java.util.Arrays;
 

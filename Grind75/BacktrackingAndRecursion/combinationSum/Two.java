@@ -1,4 +1,4 @@
-package DynamicProgramming.CombinationSum;
+package BacktrackingAndRecursion.combinationSum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,11 +28,11 @@ public class Two {
     public static List<List<Integer>> combinations(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(candidates);
-        helper(0, candidates, ans, new ArrayList<>(), target);
+        backtrack(0, candidates, ans, new ArrayList<>(), target);
         return ans;
     }
 
-    public static void helper(int index, int[] candidates, List<List<Integer>> ans, List<Integer> curList, int target) {
+    public static void backtrack(int index, int[] candidates, List<List<Integer>> ans, List<Integer> curList, int target) {
         if (target == 0) {
             ans.add(new ArrayList<>(curList));
             return;
@@ -46,7 +46,7 @@ public class Two {
             int pick = candidates[i];
             if (pick <= target) {
                 curList.add(pick);
-                helper(i + 1, candidates, ans, curList, target - pick);
+                backtrack(i + 1, candidates, ans, curList, target - pick);
                 curList.remove(curList.size() - 1);
             }
 
