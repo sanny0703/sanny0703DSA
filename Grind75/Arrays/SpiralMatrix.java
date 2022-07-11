@@ -15,34 +15,37 @@ public class SpiralMatrix {
         int rowBegin = 0, rowEnd = n - 1;
         int colBegin = 0, colEnd = m - 1;
         List<Integer> ans = new ArrayList<>();
+        int dir = 0;
         while (rowBegin <= rowEnd && colBegin <= colEnd) {
-            //traverse right
-            for (int i = colBegin; i <= colEnd; i++) {
-                ans.add(matrix[rowBegin][i]);
-            }
-            rowBegin++;
+            switch (dir) {
+                // moving right
+                case 0:
+                    for (int i = colBegin; i <= colEnd; i++)
+                        ans.add(matrix[rowBegin][i]);
+                    rowBegin++;
+                    break;
+                // moving down
+                case 1:
+                    for (int i = rowBegin; i <= rowEnd; i++)
+                        ans.add(matrix[i][colEnd]);
+                    colEnd--;
+                    break;
+                // moving left
+                case 2:
+                    for (int i = colEnd; i >= colBegin; i--)
+                        ans.add(matrix[rowEnd][i]);
+                    rowEnd--;
+                    break;
+                // moving up
+                case 3:
+                    for (int i = rowEnd; i >= rowBegin; i--)
+                        ans.add(matrix[i][colBegin]);
+                    colBegin++;
+                    break;
 
-            // traverse down
-            for (int i = rowBegin; i <= rowEnd; i++) {
-                ans.add(matrix[i][colEnd]);
-            }
-            colEnd--;
-            // traverse left
-            if (rowBegin <= rowEnd) {
-                for (int i = colEnd; i >= colBegin; i--) {
-                    ans.add(matrix[rowEnd][i]);
-                }
-                rowEnd--;
-            }
-            // traverse up
-            if (colBegin <= colEnd) {
-                for (int i = rowEnd; i >= rowBegin; i--) {
-                    ans.add(matrix[i][colBegin]);
-                }
 
             }
-            colBegin++;
-
+            dir = (dir + 1) % 4;
         }
         return ans;
     }
