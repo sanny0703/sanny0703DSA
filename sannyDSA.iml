@@ -12,6 +12,7 @@
       <sourceFolder url="file://$MODULE_DIR$/slidingWindow" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Grind75" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Files" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Practise" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

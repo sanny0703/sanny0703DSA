@@ -29,6 +29,7 @@ public class Dfs {
                 else if (dfsVisited[neighbor]) return true;
             }
         }
+        dfsVisited[cur] = false;
         return false;
     }
 

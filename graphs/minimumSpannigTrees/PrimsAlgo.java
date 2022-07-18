@@ -43,20 +43,6 @@ public class PrimsAlgo {
 
     }
 
-    public static class Pair {
-        int node, weight;
-
-        public Pair(int node, int weight) {
-            this.node = node;
-            this.weight = weight;
-        }
-
-        @Override
-        public String toString() {
-            return "(" + node + "," + weight + ")";
-        }
-    }
-
     public static void addEdge(int u, int v, int dist, List<List<Pair>> adj) {
         adj.get(u).add(new Pair(v, dist));
         adj.get(v).add(new Pair(u, dist));
@@ -72,5 +58,19 @@ public class PrimsAlgo {
         addEdge(1, 4, 5, adj);
         addEdge(2, 4, 7, adj);
         System.out.println(Arrays.toString(minSpanningTree(adj)));
+    }
+
+    public static class Pair {
+        int node, weight;
+
+        public Pair(int node, int weight) {
+            this.node = node;
+            this.weight = weight;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + node + "," + weight + ")";
+        }
     }
 }

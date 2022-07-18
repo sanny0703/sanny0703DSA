@@ -43,15 +43,6 @@ public class Bfs {
         adj.get(v).add(u);
     }
 
-    private static class Node {
-        int cur, prev;
-
-        public Node(int cur, int prev) {
-            this.cur = cur;
-            this.prev = prev;
-        }
-    }
-
     public static void main(String[] args) {
         List<List<Integer>> adj = new ArrayList<>();
         for (int i = 0; i < 9; i++) adj.add(new ArrayList<>());
@@ -68,5 +59,14 @@ public class Bfs {
 
         System.out.println(isCycle(adj));
 
+    }
+
+    private static class Node {
+        int cur, prev;
+
+        public Node(int cur, int prev) {
+            this.cur = cur;
+            this.prev = prev;
+        }
     }
 }

@@ -17,8 +17,7 @@ public class UnionFind {
     }
 
     public int find(int a) {
-        if (a == root[a])
-            return a;
+        if (a == root[a]) return a;
         return root[a] = find(root[a]);
     }
 
