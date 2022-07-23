@@ -14,12 +14,13 @@ import java.util.Map;
  * </code>
  */
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
-    private static int preorderIndex;
     static Map<Integer, Integer> inorderIndexMap;
+    private static int preorderIndex;
 
     public static TreeNode constructTree(int[] inorder, int[] preorder) {
         preorderIndex = 0;
         inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) inorderIndexMap.put(inorder[i], i);
         return arrayToTree(preorder, 0, preorder.length - 1);
     }
 

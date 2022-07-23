@@ -41,9 +41,11 @@ public class PowXN {
             x = 1 / x;
         }
 
+
         double pow = 1;
         while (n != 0) {
             if ((n & 1) != 0) // if n is odd
+                // i.e. multiply only when it is odd
                 pow *= x;
             x *= x;
             n >>>= 1;
