@@ -12,6 +12,7 @@ package VariableSize;
  * 4 . </code>
  */
 public class LongestSubArrayOfSumK {
+    // this approach won't work for negative numbers
     public static int longestSubArray(int[] arr, int k) {
         int sum = 0;
         int i = 0, j = 0;
@@ -38,5 +39,6 @@ public class LongestSubArrayOfSumK {
         System.out.println(longestSubArray(new int[]{4, 1, 1, 1, 2, 3, 5,}, 5));
         //5{10,33,34,65,89}
         System.out.println(longestSubArray(new int[]{2, 3, 4, 5, 3, 1, 9, 4, 5, 3, 2, 6, 7, 3, 9, 10, 33, 34, 65, 89, 34, 556, 7968, 454}, 231));
+        System.out.println(longestSubArray(new int[]{1,-1,5,-2,3},3));
     }
 }

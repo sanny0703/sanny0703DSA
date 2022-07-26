@@ -1,5 +1,7 @@
 package DynamicProgramming;
 
+import java.util.Arrays;
+
 /**
  * You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
  * <br>
@@ -18,16 +20,19 @@ package DynamicProgramming;
  */
 public class CoinChange {
     public static int minCoins(int[] coins, int target) {
-        int n = coins.length;
-        int[][] dp = new int[n + 1][target + 1];
-        for (int j = 1; j < target + 1; j++) dp[0][j] = Integer.MAX_VALUE - 1;
-        for (int i = 1; i < n + 1; i++) {
-            for (int j = 1; j < target + 1; j++) {
-                if (coins[i - 1] <= j) dp[i][j] = Math.min(1 + dp[i][j - coins[i - 1]], dp[i - 1][j]);
-                else dp[i][j] = dp[i - 1][j];
+
+        int[] dp = new int[target + 1];
+        int upperBound = target + 1; //upperbound for no fo combinations
+        Arrays.fill(dp, upperBound);
+        dp[0] = 0;
+        for (int i = 1; i <= target; i++) {
+            for (int coin : coins) {
+                if (i - coin >= 0) {
+                    dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                }
             }
         }
-        return dp[n][target];
+        return dp[target] == upperBound ? -1 : dp[target];
     }
 
     public static void main(String[] args) {

@@ -36,22 +36,17 @@ import java.util.Arrays;
 public class Four {
     public static int combinations(int[] arr, int target) {
         int[] dp = new int[target + 1];
-        Arrays.fill(dp, -1);
-        return helper(0, arr, dp, target);
-    }
-
-    public static int helper(int val, int[] arr, int[] dp, int target) {
-        if (target == val) return 1;
-        if (dp[val] != -1)
-            return dp[val];
-        int ans = 0;
-        for (int j : arr) {
-            if (j + val <= target) {
-                ans += helper(val + j, arr, dp, target);
+        // for 0 target there is only one combination {}
+        dp[0] = 1;
+        for (int i = 1; i <= target; i++) {
+            for (int num : arr) {
+                if (i - num >= 0)
+                    dp[i] += dp[i - num];
             }
         }
-        return dp[val] = ans;
+        return dp[target];
     }
+
 
     public static void main(String[] args) {
         System.out.println(combinations(new int[]{1, 2, 3}, 4));
