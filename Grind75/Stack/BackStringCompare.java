@@ -32,7 +32,7 @@ public class BackStringCompare {
     public static boolean twoPointer(String s, String t) {
         int n = s.length(), m = t.length();
         int i = n - 1, j = m - 1;
-        int back = 0;
+        int back;
         while (true) {
             back = 0;
             while (i >= 0 && (back > 0 || s.charAt(i) == '#')) {

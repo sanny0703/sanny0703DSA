@@ -13,6 +13,9 @@ public class PalindromeList {
     public static boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) return true;
         ListNode firstHalfEnd = middle(head);
+        // we chose to reverse the second half because in case of odd length, we don't want to compare the middle element
+        // which leads to incorrect answers, so instead we reverse second half and compare with the original list as long as the
+        // second half is not null
         ListNode secondHalfHead = reverseList(firstHalfEnd);
         ListNode temp1 = head, temp2 = secondHalfHead;
         while (temp2 != null) {

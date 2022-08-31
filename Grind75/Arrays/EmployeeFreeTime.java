@@ -2,10 +2,7 @@ package Arrays;
 
 import Arrays.MeetingRooms.Interval;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * We are given a list schedule of employees, which represents the working time for each employee.
@@ -28,7 +25,7 @@ public class EmployeeFreeTime {
     public static List<Interval> getFreeTime(List<List<Interval>> intervals) {
         List<Interval> ans = new ArrayList<>();
         List<Interval> timeLine = new ArrayList<>();
-        intervals.forEach(e -> timeLine.addAll(e));
+        intervals.forEach(timeLine::addAll);
         timeLine.sort(Comparator.comparingInt(a -> a.start));
         Interval temp = timeLine.get(0);
         for (Interval interval : timeLine) {
@@ -44,8 +41,8 @@ public class EmployeeFreeTime {
     public static void main(String[] args) {
         List<List<Interval>> intervals = new ArrayList<>();
         intervals.add(Arrays.asList(new Interval(1, 2), new Interval(5, 6)));
-        intervals.add(Arrays.asList(new Interval(1, 3)));
-        intervals.add(Arrays.asList(new Interval(4, 10)));
+        intervals.add(Collections.singletonList(new Interval(1, 3)));
+        intervals.add(Collections.singletonList(new Interval(4, 10)));
         System.out.println(getFreeTime(intervals));
 
     }

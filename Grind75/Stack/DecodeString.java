@@ -1,5 +1,7 @@
 package Stack;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -37,8 +39,33 @@ public class DecodeString {
         return ans.toString();
     }
 
+    public static String recursive(String s) {
+        Queue<Character> queue = new ArrayDeque<>();
+        for (char c : s.toCharArray()) queue.offer(c);
+        return helper(queue);
+    }
+
+    public static String helper(Queue<Character> queue) {
+        StringBuilder sb = new StringBuilder();
+        int num = 0;
+        while (!queue.isEmpty()) {
+            char c = queue.poll();
+            if (Character.isDigit(c))
+                num = num * 10 + (c - '0');
+            else if (c == '[') {
+                String sub = helper(queue);
+                for (int i = num; i > 0; i--) sb.append(sub);
+                num = 0;
+            } else if (c == ']') break;
+            else sb.append(c);
+        }
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         System.out.println(decode("3[a2[c]]"));
         System.out.println(decode("3[a]2[bc]"));
+        System.out.println(recursive("3[a2[c]]"));
+        System.out.println(recursive("3[a]2[bc]"));
     }
 }

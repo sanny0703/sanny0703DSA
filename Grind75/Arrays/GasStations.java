@@ -1,5 +1,8 @@
 package Arrays;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].
  * <p>
@@ -39,7 +42,7 @@ public class GasStations {
 
     // optimised
     // instead of checking every index ,after we ran out of fuel, we can skip the useless starts
-    // all the starts prior to where our fuel<0 are useless, we can move our start point to a the start after that
+    // all the starts prior to where our fuel<0 are useless, we can move our start point to the start after that
     public static int getStartPoint2(int[] gas, int[] cost) {
         int n = gas.length;
         int totalFuel = 0, // our total cost after our trip

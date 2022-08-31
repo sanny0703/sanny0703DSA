@@ -3,7 +3,7 @@ package DisjointSet;
 /**
  * Given a boolean 2D matrix, find the number of islands.
  * Notice
- * 0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
+ * 0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in same island. We only consider up/down/left/right adjacent.
  * Example
  * Given graph:
  * [

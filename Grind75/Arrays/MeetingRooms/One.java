@@ -1,7 +1,7 @@
 package Arrays.MeetingRooms;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ import java.util.List;
 public class One {
     public static boolean canAttendMeetings(List<Interval> intervals) {
         int n = intervals.size();
-        Collections.sort(intervals, (a, b) -> a.start - b.start);
+        intervals.sort(Comparator.comparingInt(a -> a.start));
         for (int i = 1; i < n; i++) {
             if (intervals.get(i - 1).end > intervals.get(i).start)
                 return false;
