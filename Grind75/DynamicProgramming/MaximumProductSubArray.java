@@ -35,6 +35,7 @@ public class MaximumProductSubArray {
         return ans;
     }
 
+
     public static void main(String[] args) {
         System.out.println(maxSubArray(new int[]{2, 3, -2, 4}));
     }

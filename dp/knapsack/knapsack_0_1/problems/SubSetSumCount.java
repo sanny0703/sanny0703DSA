@@ -1,5 +1,8 @@
 package knapsack.knapsack_0_1.problems;
 
+/**
+ * Given an array of numbers ,find the count of subsets that are having sum equal to the target
+ */
 public class SubSetSumCount {
     public static int count(int[] nums, int n, int target) {
 

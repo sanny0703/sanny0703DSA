@@ -2,7 +2,7 @@ package longestCommonSubsequence;
 
 /**
  * Longest Common Subsequence Problem solution using recursion<br>
- * Given two sequences, find the length of longest subsequence present in both of them.<br>
+ * Given two strings, find the length of longest subsequence present in both of them.<br>
  * A subsequence is a sequence that appears in the same relative order, but not necessarily contiguous.<br>
  *
  * <i>For example, “abc”,  “abg”, “bdf”, “aeg”,  ‘”acefg”, .. etc are subsequences of “abcdefg”.</i>

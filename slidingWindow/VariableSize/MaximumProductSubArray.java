@@ -36,5 +36,6 @@ public class MaximumProductSubArray {
     public static void main(String[] args) {
         //180
         System.out.println(maxSubArray(new int[]{6, -3, -10, 0, 2}));
+        System.out.println(maxSubArray(new int[]{-3,-1,-1}));
     }
 }

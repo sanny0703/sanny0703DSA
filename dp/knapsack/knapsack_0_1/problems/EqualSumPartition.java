@@ -2,8 +2,16 @@ package knapsack.knapsack_0_1.problems;
 
 import java.util.Arrays;
 
+/**
+ * Given an array of numbers return whether it can be divided into two subsets of equal sum
+ */
 public class EqualSumPartition {
 
+    /**
+     * Approach: find the total sum of arrays
+     * if sum is odd, it can't be split into two halves with equal sum
+     * if sum is even, try to find whether we can form a subset with half of the total sum
+     */
     public static boolean isEqualPartition(int[] nums) {
 
         int sum = Arrays.stream(nums).sum();

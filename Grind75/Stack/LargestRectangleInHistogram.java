@@ -12,32 +12,37 @@ package Stack;
 public class LargestRectangleInHistogram {
     //the idea here is the largest area of rectangle  that can be formed with heights[i]
     // is  with width(r-l-1)
-    // r: first height to the right of heights[i] that r<heights[i]
-    // l: first height to the left of heights[i] that is l<heights[i]
+    // r: index of first height to the right of heights[i] that r<heights[i]
+    // l: index of first height to the left of heights[i] that is l<heights[i]
     public static int largest(int[] heights) {
         int n = heights.length;
-        int[] lessFromRight = new int[n];
-        int[] lessFromLeft = new int[n];
-        lessFromLeft[0] = -1;
-        lessFromRight[n - 1] = n;
+        int[] firstLeftIndexWithLesserHeight = new int[n];
+        int[] firstRightIndexWithLesserHeight = new int[n];
+        firstLeftIndexWithLesserHeight[0] = -1; // no heights to the left of 0th index.
+        firstRightIndexWithLesserHeight[n - 1] = n; // no heights to the right of nth index.
         for (int i = 1; i < n; i++) {
-            int p = i - 1;
-            while (p >= 0 && heights[p] >= heights[i])
-                p = lessFromLeft[p]; // these are larger than me,and you are smaller than me, so there is no way they are
-            //smaller than you, so just start searching from the index which is smaller than me
-            lessFromLeft[i] = p;
+            int currentPosition = i - 1;
+            while (currentPosition >= 0 && heights[currentPosition] >= heights[i]) {
+                // since the height of currentPosition is > heights[i] there is no way we can find lesser height before we the lesser height of currentPosition
+                // so,let's start searching from there
+                currentPosition = firstLeftIndexWithLesserHeight[currentPosition];
+            }
+            firstLeftIndexWithLesserHeight[i] = currentPosition;
         }
         for (int i = n - 2; i >= 0; i--) {
-            int p = i + 1;
-            while (p < n && heights[p] >= heights[i])
-                p = lessFromRight[p];
-            lessFromRight[i] = p;
+            int currentPosition = i + 1;
+            while (currentPosition < n && heights[currentPosition] >= heights[i]) {
+                currentPosition = firstRightIndexWithLesserHeight[currentPosition];
+            }
+            firstRightIndexWithLesserHeight[i] = currentPosition;
         }
-        int max = 0;
+        int largestArea = 0;
         for (int i = 0; i < n; i++) {
-            max = Math.max(max, heights[i] * (lessFromRight[i] - lessFromLeft[i] - 1));
+            // just take the largest among the areas formed with each histogram
+            int currentHistogramArea = (firstRightIndexWithLesserHeight[i] - firstLeftIndexWithLesserHeight[i] - 1) * heights[i];
+            largestArea = Math.max(largestArea, currentHistogramArea);
         }
-        return max;
+        return largestArea;
     }
 
     public static void main(String[] args) {

@@ -14,13 +14,16 @@ package LinkedList;
 public class LinkedListCycle2 {
 
     /**
-     *Let the distance from the first node to the node where cycle begins be A, and let say the slow pointer travels  A+B.
-     *  The fast pointer must travel 2A+2B to catch up. The cycle size is N. Full cycle is also how much more fast pointer has traveled than slow pointer at meeting point.
-     *
-     * A+B+N = 2A+2B
-     * N=A+B
-     * From our calculation slow pointer traveled exactly full cycle when it meets fast pointer, and since originally it travelled A before starting on a cycle,
-     * it must travel A to reach the point where cycle begins! We can start another slow pointer at head node, and move both pointers until they meet at the beginning of a cycle.
+     * Consider a Linked List with a cycle in it.
+     * L1: distance between head and starting point of the cycle
+     * L2: distance between starting point and the meeting point of fast and slow pointers
+     * <p>
+     * So to arrive at the meeting point slow has traversed a distance of L1+L2
+     * fast pointer has traversed a distance of L1+L2+x+L2( x+L2 : because L2 is part of the cycle and x is C-L2)
+     * <p>
+     * since fast traversed twice as much as slow 2(L1+L2) = L1+L2+x+L2;
+     * L1 = x
+     * which means distance from head to starting point of cycle is equal to the remaining part of cycle other than L2
      */
     public static ListNode cycle(ListNode head) {
         if (head == null || head.next == null) return null;

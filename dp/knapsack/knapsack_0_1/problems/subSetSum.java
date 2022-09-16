@@ -1,5 +1,8 @@
 package knapsack.knapsack_0_1.problems;
 
+/**
+ * Given an array of integers return whether a subset with given target can be formed from the elements of the array
+ */
 public class subSetSum {
 
     public static boolean isSum(int[] nums, int n, int target) {
