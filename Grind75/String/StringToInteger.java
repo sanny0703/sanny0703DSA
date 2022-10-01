@@ -34,9 +34,10 @@ public class StringToInteger {
         int n = s.length();
         int total = 0, sign = 1;
         int index = 0;
-        // ignoring white spaces
+        // ignoring the leading white spaces
         while (index < n && s.charAt(index) == ' ')
             index++;
+        // check for sign
         if (index < n && (s.charAt(index) == '+' || s.charAt(index) == '-')) {
             sign = s.charAt(index) == '+' ? 1 : -1;
             index++;
@@ -45,6 +46,7 @@ public class StringToInteger {
             int digit = s.charAt(index) - '0';
             // if it's not a digit break
             if (digit < 0 || digit > 9) break;
+            //check whether the num will be in range after adding the digit
             if (Integer.MAX_VALUE / 10 < total || (Integer.MAX_VALUE / 10 == total && Integer.MAX_VALUE % 10 < digit))
                 return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             total = total * 10 + digit;

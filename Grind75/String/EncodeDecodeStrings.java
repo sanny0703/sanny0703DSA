@@ -14,34 +14,35 @@ import java.util.List;
  * One possible encode method is: "lint:;code:;love:;you"
  */
 public class EncodeDecodeStrings {
+
     public static String encode(List<String> list) {
         StringBuilder sb = new StringBuilder();
         for (String s : list) {
-            sb.append(s.length() + "#");
+            sb.append(s.length()).append("#");
             sb.append(s);
         }
         return sb.toString();
     }
 
     public static List<String> decode(String s) {
-        int n = s.length();
-        List<String> ans = new ArrayList<>();
-        int i = 0;
-        while (i < n) {
-            String length = "";
-            while (Character.isDigit(s.charAt(i))) {
-                length += s.charAt(i);
-                i++;
+        List<String> list = new ArrayList<>();
+        int endIndex = 0;
+        while (endIndex < s.length()) {
+            StringBuilder length = new StringBuilder();
+            while (endIndex < s.length() && Character.isDigit(s.charAt(endIndex))) {
+                length.append(s.charAt(endIndex));
+                endIndex++;
             }
-            i += 1;
-            String word = "";
-            for (int index = i; index < i + Integer.parseInt(length); index++) {
-                word += s.charAt(index);
+            endIndex++; // skip the #
+            StringBuilder str = new StringBuilder();
+            int i;
+            for (i = endIndex; i < endIndex + Integer.parseInt(length.toString()); i++) {
+                str.append(s.charAt(i));
             }
-            ans.add(word);
-            i = i + Integer.parseInt(length);
+            list.add(str.toString());
+            endIndex = i;
         }
-        return ans;
+        return list;
     }
 
     public static void main(String[] args) {

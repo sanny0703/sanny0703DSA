@@ -31,8 +31,24 @@ public class DiameterOfBinaryTree {
         return Math.max(l, r) + 1;
     }
 
+    public static int withoutGlobalParam(TreeNode root) {
+        return helper(root)[0];
+    }
+
+    private static int[] helper(TreeNode root) {
+        if (root == null)
+            return new int[2];
+        int[] left = helper(root.left);
+        int[] right = helper(root.right);
+        int currentPossibleDiameter = left[1] + right[1]; // height(root.left)+height(root.right)
+        int diameter = Math.max(currentPossibleDiameter, Math.max(left[0], right[0])); // max of left dia and right dia and current dia
+        int height = Math.max(left[1], right[1]) + 1;
+        return new int[]{diameter, height};
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3));
         System.out.println(diameter(root));
+        System.out.println(withoutGlobalParam(root));
     }
 }

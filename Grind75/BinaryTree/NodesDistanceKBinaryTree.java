@@ -25,9 +25,9 @@ public class NodesDistanceKBinaryTree {
         dfs(root, null, parentMap);
 
         Set<TreeNode> visited = new HashSet<>();
-        visited.add(root);
+        visited.add(target);
         Queue<TreeNode> queue = new ArrayDeque<>();
-        queue.offer(root);
+        queue.offer(target);
         List<Integer> ans = new ArrayList<>();
         int dist = 0;
         while (!queue.isEmpty()) {

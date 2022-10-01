@@ -31,18 +31,25 @@ public class TimeBasedKeyValueStore {
         return binarySearch(map.get(key), time);
     }
 
+    // just find the floor in ascending order sorted array
     public String binarySearch(List<Pair> list, int time) {
         int n = list.size();
         int low = 0, high = n - 1;
-        while (low < high) {
+        int index = 0;
+        while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (list.get(mid).time == time) return list.get(mid).value;
-            else if (list.get(mid).time < time) {
-                if (list.get(mid + 1).time > time) return list.get(mid).value;
+            int currentTime = list.get(mid).time;
+            if (currentTime == time)
+                return list.get(mid).value;
+            if (currentTime < time) {
+                int previousTime = list.get(index).time;
+                // take the max possible
+                if (currentTime > previousTime)
+                    index = mid;
                 low = mid + 1;
             } else high = mid - 1;
         }
-        return list.get(low).time <= time ? list.get(low).value : "";
+        return list.get(index).time <= time ? list.get(index).value : "";
     }
 
     public class Pair {

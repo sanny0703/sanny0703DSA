@@ -2,6 +2,7 @@ package BinarySearch;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.TreeMap;
 
 /**
  * We have n jobs, where every job is scheduled to be done from startTime[i] to endTime[i], obtaining a profit of profit[i].
@@ -52,6 +53,23 @@ public class JobScheduling {
         return -1;
     }
 
+    public static int treeMapSolution(int[] startTime, int[] endTime, int[] profit) {
+        int n = startTime.length;
+        int[][] jobs = new int[n][3];
+        for (int i = 0; i < n; i++) jobs[i] = new int[]{startTime[i], endTime[i], profit[i]};
+        Arrays.sort(jobs, Comparator.comparingInt(a -> a[1]));
+        TreeMap<Integer, Integer> dp = new TreeMap<>();
+        dp.put(0, 0);// at 0 th time we have 0 profit
+        for (int[] job : jobs) {
+            int cur = dp.floorEntry(job[0]).getValue() + job[2];
+            // change only if current profit is greater than the previous one
+            if (cur > dp.lastEntry().getValue())
+                dp.put(job[1], cur); // at the end of job we have cur max profit
+        }
+        // just return latest entry because that's larger than the previous entry
+        return dp.lastEntry().getValue();
+    }
+
     static class Job {
         int start, end, profit;
 
@@ -64,5 +82,6 @@ public class JobScheduling {
 
     public static void main(String[] args) {
         System.out.println(maxProfit(new int[]{1, 2, 3, 3}, new int[]{3, 4, 5, 6}, new int[]{50, 10, 40, 70}));
+        System.out.println(treeMapSolution(new int[]{1, 2, 3, 3}, new int[]{3, 4, 5, 6}, new int[]{50, 10, 40, 70}));
     }
 }
