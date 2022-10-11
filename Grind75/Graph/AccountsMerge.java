@@ -58,6 +58,54 @@ public class AccountsMerge {
         }
     }
 
+    public static List<List<String>> mergeWithDisjointSet(List<List<String>> accounts) {
+        Map<String, String> owners = new HashMap<>();
+        Map<String, String> parents = new HashMap<>();
+        Map<String, TreeSet<String>> union = new HashMap<>();
+        // first set owners of each email and set themselves as parents
+        for (List<String> account : accounts) {
+            String owner = account.get(0);
+            for (int i = 1; i < account.size(); i++) {
+                parents.put(account.get(i), account.get(i));
+                owners.put(account.get(i), owner);
+            }
+        }
+        // in an account, set parent od first email as the parent of all other emails, because they  represent a
+        // single account they should have a common parent
+        for (List<String> account : accounts) {
+            String firstEmail = account.get(1);
+            String parent = find(parents, firstEmail);
+            for (int i = 1; i < account.size(); i++) {
+                parents.put(find(parents, account.get(i)), parent);
+            }
+        }
+        //now put all those emails having same parent in a set
+        for (List<String> account : accounts) {
+            String parent = find(parents, account.get(1));
+            if (!union.containsKey(parent))
+                union.put(parent, new TreeSet<>());
+            for (int i = 1; i < account.size(); i++)
+                union.get(parent).add(account.get(i));
+        }
+        List<List<String>> mergedAccounts = new ArrayList<>();
+        // extract each set from the union
+        for (String parent : union.keySet()) {
+            List<String> mergedAccount = new ArrayList<>();
+            mergedAccount.add(owners.get(parent));
+            mergedAccount.addAll(union.get(parent));
+            mergedAccounts.add(mergedAccount);
+        }
+        return mergedAccounts;
+    }
+
+    private static String find(Map<String, String> parents, String email) {
+        if (!parents.get(email).equals(email)) {
+            parents.put(email, find(parents, parents.get(email)));
+            return parents.get(email);
+        }
+        return email;
+    }
+
     public static void main(String[] args) {
         List<List<String>> accounts = new ArrayList<>();
         accounts.add(Arrays.asList("John", "johnsmith@mail.com", "john_newyork@mail.com"));
@@ -65,5 +113,6 @@ public class AccountsMerge {
         accounts.add(Arrays.asList("Mary", "mary@mail.com"));
         accounts.add(Arrays.asList("John", "johnnybravo@mail.com"));
         System.out.println(merge(accounts));
+        System.out.println(mergeWithDisjointSet(accounts));
     }
 }

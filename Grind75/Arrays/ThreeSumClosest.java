@@ -17,8 +17,10 @@ public class ThreeSumClosest {
     public static int closest(int[] nums, int target) {
         int n = nums.length;
         Arrays.sort(nums);
-        int res = nums[0] + nums[1] + nums[n - 1];
+        int res = nums[0] + nums[1] + nums[2];
         for (int i = 0; i < n - 2; i++) {
+            // skipping already found 3sum to increase performance
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
             int low = i + 1, high = n - 1;
             while (low < high) {
                 int sum = nums[i] + nums[low] + nums[high];

@@ -33,6 +33,7 @@ public class MinimumHeightTrees {
         }
         Queue<Integer> queue = new ArrayDeque<>();
         for (int i = 0; i < n; i++)
+            // we are removing  leaves here(nodes with inDegree 1)
             if (inDegree[i] == 1) queue.offer(i);
         //we just start removing all the nodes layer by layer starting from leaf nodes until there are at least two nodes
         //left
@@ -53,7 +54,33 @@ public class MinimumHeightTrees {
 
     }
 
+    public static List<Integer> optimized(int n, int[][] edges) {
+        if (n == 1)
+            return Collections.singletonList(0);
+        List<Set<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) adj.add(new HashSet<>());
+        for (int[] edge : edges) {
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+        }
+        List<Integer> leaves = new ArrayList<>();
+        for (int i = 0; i < n; i++)
+            if (adj.get(i).size() == 1) leaves.add(i);
+        while (n > 2) {
+            n -= leaves.size();
+            List<Integer> newLeaves = new ArrayList<>();
+            for (int leaf : leaves) {
+                int pos = adj.get(leaf).iterator().next();
+                adj.get(pos).remove(leaf);
+                if (adj.get(pos).size() == 1) newLeaves.add(pos);
+            }
+            leaves = newLeaves;
+        }
+        return new ArrayList<>(leaves);
+    }
+
     public static void main(String[] args) {
         System.out.println(findMinHeightTrees(6, new int[][]{{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}));
+        System.out.println(optimized(6, new int[][]{{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}));
     }
 }

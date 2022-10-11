@@ -24,7 +24,7 @@ public class CheapestFlightsWithKStops {
         }
         // we maintain a visited map to keep track of visited cities along with the stops it took to visit that city
         Map<Integer, Integer> visited = new HashMap<>();
-        visited.put(src, 0);
+//        visited.put(src, 0);
         Queue<int[]> queue = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
         queue.offer(new int[]{src, 0, 0});
         while (!queue.isEmpty()) {
@@ -33,8 +33,8 @@ public class CheapestFlightsWithKStops {
             if (currentCity == dest) {
                 return price;
             }
-            // we only visit the city ,if it's not visited or stops < k
-            if (!visited.containsKey(currentCity) || stops < k) {
+            // we only visit the city ,if it's not visited or stops < previous stops
+            if (!visited.containsKey(currentCity) || stops < visited.get(currentCity)) {
                 visited.put(currentCity, stops);
                 if (stops > k) continue;
                 for (Node neighborNode : adj.get(currentCity)) {

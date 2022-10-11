@@ -18,7 +18,8 @@ import java.util.Set;
  * <p>
  * the idea is to only check on positive side,because even if it is on negative side ,the steps needed will be same
  */
-public class MinimumKnightMoves {
+public class
+MinimumKnightMoves {
     public static int minMoves(int x, int y) {
         x = Math.abs(x); // we will be moving in positive coordinates only
         y = Math.abs(y);

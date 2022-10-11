@@ -64,8 +64,7 @@ public class AccountsMerge {
         for (String parent : union.keySet()) {
             List<String> mergedAccount = new ArrayList<>();
             mergedAccount.add(owners.get(parent));
-            for (String neighbor : union.get(parent))
-                mergedAccount.add(neighbor);
+            mergedAccount.addAll(union.get(parent));
             mergedAccounts.add(mergedAccount);
         }
         return mergedAccounts;
